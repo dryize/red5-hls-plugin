@@ -602,7 +602,7 @@ public class HLSStreamWriter implements IStreamWriter {
 		}
 		// if we're supposed to, close the container
 		if ((rv = container.close()) < 0) {
-			throw new RuntimeException("error " + IError.make(rv) + ", failed close IContainer " + container + " for " + outputUrl);
+            log.error("Error {}, failed close IContainer{} for ", getErrorMessage(rv), container, outputUrl); //No need to throw error here. Container will anyway closed
 		}
 		// get the current segment, if one exists
 		Segment segment = facade.getSegment();
